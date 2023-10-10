@@ -1,8 +1,10 @@
 package com.example.Library.Management.Systems.Entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,5 +32,11 @@ public class Student {
     private String emailId;
 
     private String bloodGroup;
+
+    @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
+    private LibraryCard libraryCard;
+
+
+    //This should also have libraryCard Information
 
 }
