@@ -4,6 +4,8 @@ import com.example.Library.Management.Systems.Enums.CardStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -22,11 +24,13 @@ import lombok.Setter;
 public class LibraryCard {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cardNo; //This is acting for the PK of the Library Card Table
 
     @Enumerated(value = EnumType.STRING)
     private CardStatus cardStatus;
 
+    private String nameOnCard;
 
     /*
         Library Card needs to be connected with the student Table

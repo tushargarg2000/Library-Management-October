@@ -3,6 +3,10 @@ package com.example.Library.Management.Systems.Entities;
 
 import com.example.Library.Management.Systems.Enums.Genre;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -23,17 +27,19 @@ import java.util.List;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer bookId;
 
-    private String bookName;
+    private String bookName; //PostMan
 
-    private int price;
+    private int price; //Postman
 
-    private int noOfPages;
+    private int noOfPages; //Postman
 
-    private Genre genre;
+    @Enumerated(value = EnumType.STRING)
+    private Genre genre; //Postman
 
-    private double rating;
+    private double rating; //Postman
 
     @ManyToOne
     @JoinColumn

@@ -2,6 +2,7 @@ package com.example.Library.Management.Systems.Services;
 
 
 import com.example.Library.Management.Systems.Entities.Author;
+import com.example.Library.Management.Systems.Entities.Book;
 import com.example.Library.Management.Systems.Repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,20 @@ public class AuthorService {
 
     }
 
+    public List<String> getBookNames(Integer authorId){
+        //Can you write this piece of code :
+        List<String> bookNames = new ArrayList<>();
+
+        //We have authorId :--> Author Entity first
+
+        Author author = authorRepository.findById(authorId).get();
+        List<Book> bookList = author.getBookList();
+
+        for(Book book:bookList) {
+            bookNames.add(book.getBookName());
+        }
+        return bookNames;
+    }
 
 
 }
