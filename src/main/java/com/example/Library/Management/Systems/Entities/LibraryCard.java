@@ -1,19 +1,14 @@
 package com.example.Library.Management.Systems.Entities;
 
 import com.example.Library.Management.Systems.Enums.CardStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "library_card")
@@ -32,6 +27,8 @@ public class LibraryCard {
 
     private String nameOnCard;
 
+    private Integer noOfBooksIssued;
+
     /*
         Library Card needs to be connected with the student Table
      */
@@ -40,5 +37,9 @@ public class LibraryCard {
     @JoinColumn
     private Student student; //This is acting as a FK of the Library Card table
     //This variable is to be put in mappedBy attribute in the parent class
+
+
+    @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
+    private List<Transaction> transactionList = new ArrayList<>();
 
 }

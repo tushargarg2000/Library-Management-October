@@ -2,6 +2,7 @@ package com.example.Library.Management.Systems.Services;
 
 import com.example.Library.Management.Systems.Entities.Author;
 import com.example.Library.Management.Systems.Entities.Book;
+import com.example.Library.Management.Systems.Enums.Genre;
 import com.example.Library.Management.Systems.Exceptions.AuthorNotFoundException;
 import com.example.Library.Management.Systems.Repository.AuthorRepository;
 import com.example.Library.Management.Systems.Repository.BookRepository;
@@ -57,6 +58,19 @@ public class BookService {
 
         return "Book has been added to the DB";
 
+    }
+
+    public List<String> getBooksByGenre(Genre genre){
+
+        List<Book> bookList = bookRepository.findBooksByGenre(genre);
+
+        List<String> bookNames = new ArrayList<>();
+
+        for(Book book:bookList) {
+
+            bookNames.add(book.getBookName());
+        }
+        return bookNames;
     }
 
 

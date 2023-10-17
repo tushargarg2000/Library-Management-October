@@ -2,20 +2,13 @@ package com.example.Library.Management.Systems.Entities;
 
 
 import com.example.Library.Management.Systems.Enums.Genre;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -41,9 +34,16 @@ public class Book {
 
     private double rating; //Postman
 
+    private boolean isAvailable;
+
     @ManyToOne
     @JoinColumn
     private Author author;
 
-    //Author I have to write
+
+    //Connecting to transactions
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    private List<Transaction> transactionList = new ArrayList<>();
+
+
 }
